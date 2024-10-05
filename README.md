@@ -1,4 +1,4 @@
-# Dynamic AI-generated context to improve AI transcriptions
+# Improving Whisper Transcriptions with GPT-4o
 
 I was watching the [latest news episode from Whisky.com](https://www.youtube.com/watch?v=rYUOnaPfigg) (where fine spirits meet ™) the other day on YouTube, and noticed that the transcription was really off.
 
@@ -25,9 +25,11 @@ Here are a couple of examples:
 **YouTube transcriber**: "the distel group and they uh uh had buah haban deanston and toomore in their group"  
 **OpenAI Whisper**: "the Distel Group and they had Bunnehaben, Diensten and Tobermory in their group"
 
-So, while it looks like YouTube could generate some improvements by using a model similar to Whisper (perhaps it's some conscious decision on their end to use a smaller and weaker model due to their scale), there is still much room for improvement on top of Whisper's result as well.
+So, while it looks like YouTube could generate some improvements by using a model similar to Whisper (perhaps it's some conscious decision on their end to use a smaller and weaker model due to their scale), there is still much room for improvement on top of Whisper's result as well. 
 
-Using AI, we can easily solve this issue almost entirely, by implementing the following pattern to provide context to the transcriber:
+Unfortunately, the transcription cannot be handed over as-is to something like GPT as it would change the original text such that it does not match the video anymore (using prompt engineering, I could not get the model to avoid changing some pieces of text from the original).
+
+However, we can easily solve this issue almost entirely, by implementing the following pattern to provide context to the transcriber:
 
 ![Process Diagram](media/image3.png)
 
@@ -72,7 +74,7 @@ This project is a Python-based implementation of the above that transcribes vide
 
 - Extracts audio from video files (ffmpeg required)
 - Transcribes audio using OpenAI's Whisper model (OpenAI API key required)
-- Improves transcription using GPT-4 (OpenAI API key required)
+- Improves transcription using GPT-4o (OpenAI API key required)
 - Generates suggestions for corrections (OpenAI API key required)
 - Applies corrections to the original transcription
 
